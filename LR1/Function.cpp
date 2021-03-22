@@ -1,42 +1,22 @@
 #include "Function.h"
 
 Function::Function() {
-	SetX(0);
-	SetC(0);
 	SetA(1);
 	SetB(1);
+	SetC(0);
+	SetX(0);
 }
 
-Function::Function(double x) : Function() {
-	SetX(x);
-}
-
-Function::Function(double x, double c) : Function(x) {
-	SetC(c);
-}
-
-Function::Function(double x, double c, double a) : Function (x, c) {
+Function::Function(double a) : Function() {
 	SetA(a);
 }
 
-Function::Function(double x, double c, double a, double b) : Function(x, c, a) {
+Function::Function(double a, double b) : Function(a) {
 	SetB(b);
 }
 
-void Function::SetX(double x) {
-	this->x = x;
-}
-
-double Function::GetX() {
-	return x;
-}
-
-void Function::SetC(double c) {
-	this->c = c;
-}
-
-double Function::GetC() {
-	return c;
+Function::Function(double a, double b, double c) : Function (a, b) {
+	SetC(c);
 }
 
 void Function::SetA(double a) {
@@ -61,11 +41,24 @@ double Function::GetB() {
 	return b;
 }
 
-double Function::operator()(double x, double c, double a, double b) {
+void Function::SetC(double c) {
+	this->c = c;
+}
+
+double Function::GetC() {
+	return c;
+}
+
+void Function::SetX(double x) {
+	this->x = x;
+}
+
+double Function::GetX() {
+	return x;
+}
+
+double Function::operator()(double x) {
 	SetX(x);
-	SetC(c);
-	SetA(a);
-	SetB(b);
 	double result;
 	if (x <= c)
 		result = (c - x) / a;

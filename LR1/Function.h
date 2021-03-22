@@ -6,13 +6,12 @@ using std::string;
 class Function
 {
 private:
-	double x, c, a, b;
+	double a, b, c, x;
 public:
 	Function();
-	Function(double x);
-	Function(double x, double c);
-	Function(double x, double c, double a);
-	Function(double x, double c, double a, double b);
+	Function(double a);
+	Function(double a, double b);
+	Function(double a, double b, double c);
 
 	void SetA(double a);
 	double GetA();
@@ -23,7 +22,7 @@ public:
 	void SetX(double x);
 	double GetX();
 
-	double operator()(double x, double c, double a, double b);
+	double operator()(double x);
 
 	string GetFunctionAsString();
 };
