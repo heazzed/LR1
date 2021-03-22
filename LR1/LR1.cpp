@@ -32,8 +32,8 @@ int main() {
 	cout << endl;
 
 	Function S(-1.1, 34.2, -210.6);
-	cout << S.GetFunctionAsString() << S(S.GetX()) << endl;
-	cout << "Params:" << " a=" << F.GetA() << " b=" << F.GetB() << " c=" << F.GetC() << " x=" << F.GetX() << endl;
+	cout << S.GetFunctionAsString() << S(1.4) << endl;
+	cout << "Params:" << " a=" << S.GetA() << " b=" << S.GetB() << " c=" << S.GetC() << " x=" << S.GetX() << endl;
 
 	cout << endl;
 	return 0;

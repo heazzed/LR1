@@ -1,10 +1,10 @@
 #include "Function.h"
 
 Function::Function() {
-	SetA(1);
-	SetB(1);
-	SetC(0);
-	SetX(0);
+	this->a = 1;
+	this->b = 1;
+	this->c = 0;
+	this->x = 0;
 }
 
 Function::Function(double a) : Function() {
@@ -60,10 +60,10 @@ double Function::GetX() {
 double Function::operator()(double x) {
 	SetX(x);
 	double result;
-	if (x <= c)
-		result = (c - x) / a;
+	if (this->x <= c)
+		result = (c - this->x) / a;
 	else
-		result = (x - c) / b;
+		result = (this->x - c) / b;
 	return exp(result);
 }
 
