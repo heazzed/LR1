@@ -3,27 +3,30 @@
 #include <string>
 using std::string;
 
-class Function
+class function
 {
 private:
-	double x, c, a, b;
+	double _x;
+	double _c;
+	double _a;
+	double _b;
 public:
-	Function();
-	Function(double x);
-	Function(double x, double c);
-	Function(double x, double c, double a);
-	Function(double x, double c, double a, double b);
+	function();
+	function(double x);
+	function(double x, double c);
+	function(double x, double c, double a);
+	function(double x, double c, double a, double b);
 
-	void SetA(double a);
-	double GetA();
-	void SetB(double b);
-	double GetB();
-	void SetC(double c);
-	double GetC();
-	void SetX(double x);
-	double GetX();
+	void set_a(double a);
+	double get_a();
+	void set_b(double b);
+	double get_b();
+	void set_c(double c);
+	double get_c();
+	void set_x(double x);
+	double get_x();
 
 	double operator()(double x, double c, double a, double b);
 
-	string GetFunctionAsString();
+	string get_function_as_string();
 };

@@ -1,71 +1,54 @@
 #include "Function.h"
 
-Function::Function() {
-	SetX(0);
-	SetC(0);
-	SetA(1);
-	SetB(1);
+function::function(): function(0) {}
+
+function::function(double x) : function(x, 0, 1, 1) {}
+
+function::function(double x, double c) : function(x, c, 1, 1) {}
+
+function::function(double x, double c, double a) : function(x, c, a, 1) {}
+
+function::function(double x, double c, double a, double b) : _x(x), _c(c), _a(a), _b(b) {}
+
+void function::set_x(double x) {
+	_x = x;
 }
 
-Function::Function(double x) : Function() {
-	SetX(x);
+double function::get_x() {
+	return _x;
 }
 
-Function::Function(double x, double c) : Function(x) {
-	SetC(c);
+void function::set_c(double c) {
+	_c = c;
 }
 
-Function::Function(double x, double c, double a) : Function (x, c) {
-	SetA(a);
+double function::get_c() {
+	return _c;
 }
 
-Function::Function(double x, double c, double a, double b) : Function(x, c, a) {
-	SetB(b);
-}
-
-void Function::SetX(double x) {
-	this->x = x;
-}
-
-double Function::GetX() {
-	return x;
-}
-
-void Function::SetC(double c) {
-	this->c = c;
-}
-
-double Function::GetC() {
-	return c;
-}
-
-void Function::SetA(double a) {
+void function::set_a(double a) {
 	if (a == 0)
-		this->a = 1;
+		_a = 1;
 	else
-		this->a = a;
+		_a = a;
 }
 
-double Function::GetA() {
-	return a;
+double function::get_a() {
+	return _a;
 }
 
-void Function::SetB(double b) {
+void function::set_b(double b) {
 	if (b == 0)
-		this->b = 1;
+		_b = 1;
 	else
-		this->b = b;
+		_b = b;
 }
 
-double Function::GetB() {
-	return b;
+double function::get_b() {
+	return _b;
 }
 
-double Function::operator()(double x, double c, double a, double b) {
-	SetX(x);
-	SetC(c);
-	SetA(a);
-	SetB(b);
+double function::operator()(double x, double c, double a, double b) {
 	double result;
 	if (x <= c)
 		result = (c - x) / a;
@@ -74,34 +57,34 @@ double Function::operator()(double x, double c, double a, double b) {
 	return exp(result);
 }
 
-string Function::GetFunctionAsString() {
+string function::get_function_as_string() {
 	string result = "e^(";
-	if (x <= c) {
-		result += std::to_string(c);
-		if (x < 0) {
+	if (_x <= _c) {
+		result += std::to_string(_c);
+		if (_x < 0) {
 			result += "+";
-			result += std::to_string(abs(x));
+			result += std::to_string(abs(_x));
 		}
 		else {
 			result += "-";
-			result += std::to_string(x);
+			result += std::to_string(_x);
 		}
 		result += "/";
-		result += std::to_string(a);
+		result += std::to_string(_a);
 		result += ") = ";
 	}
 	else {
-		result += std::to_string(x);
-		if (c < 0) {
+		result += std::to_string(_x);
+		if (_c < 0) {
 			result += "+";
-			result += std::to_string(abs(c));
+			result += std::to_string(abs(_c));
 		}
 		else {
 			result += "-";
-			result += std::to_string(c);
+			result += std::to_string(_c);
 		}
 		result += "/";
-		result += std::to_string(b);
+		result += std::to_string(_b);
 		result += ") = ";
 	}
 	return result;
