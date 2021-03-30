@@ -1,30 +1,14 @@
-#include "Function.h"
+#include "function.h"
 
-function::function(): function(0) {}
+function::function(): function(1, 1, 0, 0) {}
 
-function::function(double x) : function(x, 0, 1, 1) {}
+function::function(double a) : function(a, 1, 0, 0) {}
 
-function::function(double x, double c) : function(x, c, 1, 1) {}
+function::function(double a, double b) : function(a, b, 0, 0) {}
 
-function::function(double x, double c, double a) : function(x, c, a, 1) {}
+function::function(double a, double b, double c) : function(a, b, c, 0) {}
 
-function::function(double x, double c, double a, double b) : _x(x), _c(c), _a(a), _b(b) {}
-
-void function::set_x(double x) {
-	_x = x;
-}
-
-double function::get_x() {
-	return _x;
-}
-
-void function::set_c(double c) {
-	_c = c;
-}
-
-double function::get_c() {
-	return _c;
-}
+function::function(double a, double b, double c, double x) :  _a(a), _b(b), _c(c), _x(x) {}
 
 void function::set_a(double a) {
 	if (a == 0)
@@ -33,7 +17,7 @@ void function::set_a(double a) {
 		_a = a;
 }
 
-double function::get_a() {
+double function::get_a() const{
 	return _a;
 }
 
@@ -44,11 +28,27 @@ void function::set_b(double b) {
 		_b = b;
 }
 
-double function::get_b() {
+double function::get_b() const{
 	return _b;
 }
 
-double function::operator()(double x, double c, double a, double b) {
+void function::set_c(double c) {
+	_c = c;
+}
+
+double function::get_c() const {
+	return _c;
+}
+
+void function::set_x(double x) {
+	_x = x;
+}
+
+double function::get_x() const {
+	return _x;
+}
+
+double function::operator()(double a, double b, double c, double x) const {
 	double result;
 	if (x <= c)
 		result = (c - x) / a;
@@ -57,35 +57,35 @@ double function::operator()(double x, double c, double a, double b) {
 	return exp(result);
 }
 
-string function::get_function_as_string() {
-	string result = "e^(";
+string function::get_function_as_string() const {
+	string str_function = "e^(";
 	if (_x <= _c) {
-		result += std::to_string(_c);
+		str_function += std::to_string(_c);
 		if (_x < 0) {
-			result += "+";
-			result += std::to_string(abs(_x));
+			str_function += "+";
+			str_function += std::to_string(abs(_x));
 		}
 		else {
-			result += "-";
-			result += std::to_string(_x);
+			str_function += "-";
+			str_function += std::to_string(_x);
 		}
-		result += "/";
-		result += std::to_string(_a);
-		result += ") = ";
+		str_function += "/";
+		str_function += std::to_string(_a);
+		str_function += ") = ";
 	}
 	else {
-		result += std::to_string(_x);
+		str_function += std::to_string(_x);
 		if (_c < 0) {
-			result += "+";
-			result += std::to_string(abs(_c));
+			str_function += "+";
+			str_function += std::to_string(abs(_c));
 		}
 		else {
-			result += "-";
-			result += std::to_string(_c);
+			str_function += "-";
+			str_function += std::to_string(_c);
 		}
-		result += "/";
-		result += std::to_string(_b);
-		result += ") = ";
+		str_function += "/";
+		str_function += std::to_string(_b);
+		str_function += ") = ";
 	}
-	return result;
+	return str_function;
 }
