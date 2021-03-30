@@ -4,9 +4,7 @@ using namespace std;
 
 int main() {
 	function f1;
-	f1.set_x(-11.12);
-	cout << "f1 | " << f1.get_function_as_string() << f1(1, 1, 0, -11.12) << endl;
-	cout << "f1._x=" << f1.get_x() << endl;
+	cout << "f1 | " << f1.get_function_as_string() << f1(1, 1, 0, 0) << endl;
 
 	cout << endl;
 
@@ -21,7 +19,8 @@ int main() {
 	cout << endl;
 
 	function f3(f2);
-	cout << "f3 | "<< f3.get_function_as_string() << f3(f3.get_a(), f3.get_b(), f3.get_c(), f3.get_x()) << endl;
+	f3.set_x(-5.1);
+	cout << "f3 | "<< f3.get_function_as_string() << f3(45.21, 5.3, 10.2, -5.1) << endl;
 	cout << "Attributes f3:" << endl << "f3._a=" << f3.get_a() << ", f3._b=" << f3.get_b()  << ", f3._c="
 		<< f3.get_c() << ", f3._x=" << f3.get_x() << endl;
 
@@ -39,13 +38,12 @@ int main() {
 
 	function f6(-1.1, 34.2, -210.6);
 	cout << "f6 | " << f6.get_function_as_string() << f6(-1.1, 34.2, -210.6, 0) << endl;
-	cout << "Attributes f6:" << endl << "f6._a=" << f6.get_a() << ", f6._b=" << f6.get_b() << ", f6._c="
-		<< f6.get_c() << ", f6._x=" << f6.get_x() << endl;
 
 	cout << endl;
 
 	function f7(15.2, -5.8, 20.5, 44.4);
 	cout << "f7 | " << f7.get_function_as_string() << f7(15.2, -5.8, 20.5, 44.4) << endl;
+	cout << "Attributes f7:" << endl << "f7._a=" << f7.get_a() << ", f7._b=" << f7.get_b() << ", f7._c=" << f7.get_c() << ", f7._x=" << f7.get_x() << endl;
 
 	return 0;
 }
