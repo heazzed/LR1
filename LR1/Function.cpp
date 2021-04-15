@@ -1,71 +1,54 @@
-#include "Function.h"
+#include "function.h"
 
-Function::Function() {
-	SetX(0);
-	SetC(0);
-	SetA(1);
-	SetB(1);
-}
+function::function(): function(1, 1, 0, 0) {}
 
-Function::Function(double x) : Function() {
-	SetX(x);
-}
+function::function(double a) : function(a, 1, 0, 0) {}
 
-Function::Function(double x, double c) : Function(x) {
-	SetC(c);
-}
+function::function(double a, double b) : function(a, b, 0, 0) {}
 
-Function::Function(double x, double c, double a) : Function (x, c) {
-	SetA(a);
-}
+function::function(double a, double b, double c) : function(a, b, c, 0) {}
 
-Function::Function(double x, double c, double a, double b) : Function(x, c, a) {
-	SetB(b);
-}
+function::function(double a, double b, double c, double x) :  _a(a), _b(b), _c(c), _x(x) {}
 
-void Function::SetX(double x) {
-	this->x = x;
-}
-
-double Function::GetX() {
-	return x;
-}
-
-void Function::SetC(double c) {
-	this->c = c;
-}
-
-double Function::GetC() {
-	return c;
-}
-
-void Function::SetA(double a) {
+void function::set_a(double a) {
 	if (a == 0)
-		this->a = 1;
+		_a = 1;
 	else
-		this->a = a;
+		_a = a;
 }
 
-double Function::GetA() {
-	return a;
+double function::get_a() const{
+	return _a;
 }
 
-void Function::SetB(double b) {
+void function::set_b(double b) {
 	if (b == 0)
-		this->b = 1;
+		_b = 1;
 	else
-		this->b = b;
+		_b = b;
 }
 
-double Function::GetB() {
-	return b;
+double function::get_b() const{
+	return _b;
 }
 
-double Function::operator()(double x, double c, double a, double b) {
-	SetX(x);
-	SetC(c);
-	SetA(a);
-	SetB(b);
+void function::set_c(double c) {
+	_c = c;
+}
+
+double function::get_c() const {
+	return _c;
+}
+
+void function::set_x(double x) {
+	_x = x;
+}
+
+double function::get_x() const {
+	return _x;
+}
+
+double function::operator()(double a, double b, double c, double x) const {
 	double result;
 	if (x <= c)
 		result = (c - x) / a;
@@ -74,35 +57,35 @@ double Function::operator()(double x, double c, double a, double b) {
 	return exp(result);
 }
 
-string Function::GetFunctionAsString() {
-	string result = "e^(";
-	if (x <= c) {
-		result += std::to_string(c);
-		if (x < 0) {
-			result += "+";
-			result += std::to_string(abs(x));
+string function::get_function_as_string() const {
+	string str_function = "e^(";
+	if (_x <= _c) {
+		str_function += std::to_string(_c);
+		if (_x < 0) {
+			str_function += "+";
+			str_function += std::to_string(abs(_x));
 		}
 		else {
-			result += "-";
-			result += std::to_string(x);
+			str_function += "-";
+			str_function += std::to_string(_x);
 		}
-		result += "/";
-		result += std::to_string(a);
-		result += ") = ";
+		str_function += "/";
+		str_function += std::to_string(_a);
+		str_function += ") = ";
 	}
 	else {
-		result += std::to_string(x);
-		if (c < 0) {
-			result += "+";
-			result += std::to_string(abs(c));
+		str_function += std::to_string(_x);
+		if (_c < 0) {
+			str_function += "+";
+			str_function += std::to_string(abs(_c));
 		}
 		else {
-			result += "-";
-			result += std::to_string(c);
+			str_function += "-";
+			str_function += std::to_string(_c);
 		}
-		result += "/";
-		result += std::to_string(b);
-		result += ") = ";
+		str_function += "/";
+		str_function += std::to_string(_b);
+		str_function += ") = ";
 	}
-	return result;
+	return str_function;
 }

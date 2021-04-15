@@ -1,29 +1,31 @@
-#pragma once
 #include <cmath>
 #include <string>
 using std::string;
 
-class Function
+class function
 {
 private:
-	double x, c, a, b;
+	double _a;
+	double _b;
+	double _c;
+	double _x;
 public:
-	Function();
-	Function(double x);
-	Function(double x, double c);
-	Function(double x, double c, double a);
-	Function(double x, double c, double a, double b);
+	function();
+	function(double a);
+	function(double a, double b);
+	function(double a, double b, double c);
+	function(double a, double b, double c, double x);
 
-	void SetA(double a);
-	double GetA();
-	void SetB(double b);
-	double GetB();
-	void SetC(double c);
-	double GetC();
-	void SetX(double x);
-	double GetX();
+	void set_a(double a);
+	double get_a() const;
+	void set_b(double b);
+	double get_b() const;
+	void set_c(double c);
+	double get_c() const;
+	void set_x(double x);
+	double get_x() const;
 
-	double operator()(double x, double c, double a, double b);
+	double operator()(double a, double b, double c, double x) const;
 
-	string GetFunctionAsString();
+	string get_function_as_string() const;
 };
